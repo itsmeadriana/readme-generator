@@ -1,7 +1,7 @@
 const templateDaddy = (input) => {
-    return generateProjectTitleAndDescription(input) + 
+    return generateProjectTitleAndDescription(input.projectInfo) + 
     generateTableOfContents(input) + 
-    generateInstallationInstructions(input) +
+    generateInstallationInstructions(input.installInfo) +
     generateUsageDescription(input) + 
     generateImagePreview(input) + 
     generateCreditsAndCollaborators(input) + 
@@ -11,27 +11,50 @@ const templateDaddy = (input) => {
 }
 
 const generateProjectTitleAndDescription = projectInfo => {
-    return `# Thanos Is A Wrinkly Purple Testicle`
+    return `
+# ${projectInfo.title}
+## ${projectInfo.description}
+    `
 };
 
-const generateTableOfContents = (tableInfo) => {
+const generateTableOfContents = (objectDaddy) => {
+let showProjectInfo = false
+if (objectDaddy.projectInfo != null) {
+    showProjectInfo = true;
+}
+let showInstallInfo = false
+if (objectDaddy.installInfo != null) {
+    showInstallInfo = true;
+}
+
+let tableOfContentsList = ""
+
+if (showProjectInfo) {
+    tableOfContentsList += `- [Project Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
+}
+
+if (showInstallInfo) {
+    tableOfContentsList += "- Installation\n"
+}
+
     return `
 ## Table of Contents:
-    - Installation
-    - Credits
-    - Usage
-    - License
-    - Badges
-    - Contributing
-    - Tests
-    - Made By
+${tableOfContentsList}
         `
 }
 
 const generateInstallationInstructions = installInfo => {
+
+    let instructions = installInfo.instructions
+    let instructionList = ""
+    instructions.forEach(instruction => {
+        instructionList +=  `- ${instruction}\n`
+    })
+
     return `
 ## Installation Instructions:
-    `
+${instructionList}
+`
 }
 
 const generateUsageDescription = usageInfo => {

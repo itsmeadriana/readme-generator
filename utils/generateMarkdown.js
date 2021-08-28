@@ -16,7 +16,28 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
   // return `# ${data.title}
 // `;
-     return template.templateDaddy('');
+
+  const projectInfo = {
+    "title": "Solange",
+    "description": "What really happened in the elevator??"
+  }
+
+  const installInfo = {
+    "instructions": [
+      "1. Download zip File.",
+      "2. Open zip file.",
+      "3. Install zip file."
+    ]
+  }
+
+const objectDaddy = {
+  "projectInfo": projectInfo,
+  "installInfo": installInfo
 }
+
+     return template.templateDaddy(objectDaddy);
+}
+
+
 
 module.exports = generateMarkdown;
