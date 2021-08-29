@@ -3,8 +3,14 @@
 ## What really happened in the elevator??
     
 ## Table of Contents:
-- [Project Information](#solange)
-- Installation
+- [Project-Information](#solange)
+- [Installation Instructions](#installInfo)
+- [Usage](#usageInfo)
+- [Preview](#previewImage)
+- [Credits-&-Collaborators](#${creditsInfo})
+- [Contributing](#${contributingInfo})
+- [Tests](#${testsInfo})
+- [Contact-Me](#${contactInfo})
 
         
 ## Installation Instructions:
@@ -14,15 +20,19 @@
 
 
 ## How to Use:
+[object Object]
     
 ## Preview:
-
-![Preview](src/images/solange.jpg "Solange")
+[object Object]
     
-## Credits: 
+## Credits:
+[object Object]
 ## Contributing:
+[object Object]
     
 ## Testing:
+[object Object]
     
-### Made by 
+## Contact Me:
+[object Object] 
     

@@ -1,13 +1,13 @@
 const templateDaddy = (input) => {
-    return generateProjectTitleAndDescription(input.projectInfo) + 
-    generateTableOfContents(input) + 
-    generateInstallationInstructions(input.installInfo) +
-    generateUsageDescription(input) + 
-    generateImagePreview(input) + 
-    generateCreditsAndCollaborators(input) + 
-    generateContributingPreferences(input) + 
-    generateTestsInstructions(input) + 
-    generateMadeBy(input)
+    return generateProjectTitleAndDescription(input.projectInfo) +
+        generateTableOfContents(input) +
+        generateInstallationInstructions(input.installInfo) +
+        generateUsageDescription(input.usageInfo) +
+        generateImagePreview(input.previewImage) +
+        generateCreditsAndCollaborators(input.creditsInfo) +
+        generateContributingPreferences(input.contributingInfo) +
+        generateTestsInstructions(input.testsInfo) +
+        generateContactInfo(input.contactInfo)
 }
 
 const generateProjectTitleAndDescription = projectInfo => {
@@ -18,24 +18,78 @@ const generateProjectTitleAndDescription = projectInfo => {
 };
 
 const generateTableOfContents = (objectDaddy) => {
-let showProjectInfo = false
-if (objectDaddy.projectInfo != null) {
-    showProjectInfo = true;
-}
-let showInstallInfo = false
-if (objectDaddy.installInfo != null) {
-    showInstallInfo = true;
-}
+    let showProjectInfo = false
+    if (objectDaddy.projectInfo != null) {
+        showProjectInfo = true;
+    }
+    let showInstallInfo = false
+    if (objectDaddy.installInfo != null) {
+        showInstallInfo = true;
+    }
 
-let tableOfContentsList = ""
+    let showUsageInfo = false
+    if (objectDaddy.usageInfo != null) {
+        showUsageInfo = true;
+    }
 
-if (showProjectInfo) {
-    tableOfContentsList += `- [Project Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
-}
+    let showPreviewImage = false
+    if (objectDaddy.previewImage != null) {
+        showPreviewImage = true;
+    }
 
-if (showInstallInfo) {
-    tableOfContentsList += "- Installation\n"
-}
+    let showCreditsInfo = false
+    if (objectDaddy.creditsInfo != null) {
+        showCreditsInfo = true;
+    }
+
+    let showContributingInfo = false
+    if (objectDaddy.contributingInfo != null) {
+        showContributingInfo = true;
+    }
+
+    let showTestsInfo = false
+    if (objectDaddy.testsInfo != null) {
+        showTestsInfo = true;
+    }
+
+    let showContactInfo = false
+    if (objectDaddy.contactInfo != null) {
+        showContactInfo = true;
+    }
+
+    let tableOfContentsList = ""
+
+    if (showProjectInfo) {
+        tableOfContentsList += `- [Project-Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
+    }
+
+    if (showInstallInfo) {
+        tableOfContentsList += "- [Installation Instructions](#installInfo)\n"
+    }
+
+    if (showUsageInfo) {
+        tableOfContentsList += "- [Usage](#usageInfo)\n"
+    }
+
+    if (showPreviewImage) {
+        tableOfContentsList += "- [Preview](#previewImage)\n"
+    }
+
+    if (showCreditsInfo) {
+        tableOfContentsList += "- [Credits-&-Collaborators](#${creditsInfo})\n"
+    }
+
+    if (showContributingInfo) {
+        tableOfContentsList += "- [Contributing](#${contributingInfo})\n"
+    }
+
+    if (showTestsInfo) {
+        tableOfContentsList += "- [Tests](#${testsInfo})\n"
+    }
+
+    if (showContactInfo) {
+        tableOfContentsList += "- [Contact-Me](#${contactInfo})\n"
+    }
 
     return `
 ## Table of Contents:
@@ -48,7 +102,7 @@ const generateInstallationInstructions = installInfo => {
     let instructions = installInfo.instructions
     let instructionList = ""
     instructions.forEach(instruction => {
-        instructionList +=  `- ${instruction}\n`
+        instructionList += `- ${instruction}\n`
     })
 
     return `
@@ -60,37 +114,41 @@ ${instructionList}
 const generateUsageDescription = usageInfo => {
     return `
 ## How to Use:
+${usageInfo}
     `
 }
 
-const generateImagePreview = image => {
+const generateImagePreview = previewImage => {
     return `
 ## Preview:
-
-![Preview](src/images/solange.jpg "Solange")
+${previewImage}
     `
 }
 
 const generateCreditsAndCollaborators = creditsAndCollaboratorsInfo => {
     return `
-## Credits: `
+## Credits:
+${creditsAndCollaboratorsInfo}`
 }
 
 const generateContributingPreferences = contributingInfo => {
     return `
 ## Contributing:
+${contributingInfo}
     `
 }
 
 const generateTestsInstructions = testsInfo => {
     return `
 ## Testing:
+${testsInfo}
     `
 }
 
-const generateMadeBy = userName => {
+const generateContactInfo = contactInfo => {
     return `
-### Made by 
+## Contact Me:
+${contactInfo} 
     `
 }
 

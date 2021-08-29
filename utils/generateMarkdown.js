@@ -30,10 +30,49 @@ function generateMarkdown(data) {
     ]
   }
 
+const usageInfo = {
+  "uses": "This app will run on your computer."
+}  
+
+const previewImage = {
+  "url": "https://media.baamboozle.com/uploads/images/24875/1613652058_50446.jpeg"
+}
+
+const creditsInfo = {
+  "creditsyes": "My mother, Mr. Rogers, and Tarzan.",
+  // "creditsno": "This project contains no credits."
+  "collaboratorsyes": "You, as it happens. Oh and also my super hot programmer boyfriend.",
+  // "collaboratorsno": "There were no collaborators in this project."
+}
+
+const contributingInfo = {
+  "preference-yes": "You may contribute to this project by contacting me. See below for more details.",
+  "preference-no": "Currently, this project is closed to contributors."
+}
+
+const testsInfo = {
+  "tests": "I wrote the following tests for this project:"
+}
+
+const contactInfo = {
+  "email": "deuteronomy@aol.net",
+  "github": "scifinerd42",
+  "phone": 7897897897,
+  "address": "299 Science Way"
+}
+
 const objectDaddy = {
   "projectInfo": projectInfo,
-  "installInfo": installInfo
+  "installInfo": installInfo,
+  "usageInfo": usageInfo,
+  "previewImage": previewImage,
+  "creditsInfo": creditsInfo,
+  "contributingInfo": contributingInfo,
+  "testsInfo": testsInfo,
+  "contactInfo": contactInfo
 }
+
+
 
      return template.templateDaddy(objectDaddy);
 }
