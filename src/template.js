@@ -4,10 +4,12 @@ const templateDaddy = (input) => {
         generateInstallationInstructions(input.installInfo) +
         generateUsageDescription(input.usageInfo) +
         generateImagePreview(input.previewImage) +
-        generateCreditsAndCollaborators(input.creditsInfo) +
+        generateCredits(input.creditsInfo) +
+        generateCollaborators(input.collaboratorsInfo) + 
         generateContributingPreferences(input.contributingInfo) +
         generateTestsInstructions(input.testsInfo) +
-        generateContactInfo(input.contactInfo)
+        generateContactInfo(input.contactInfo) +
+        generateMadeBy(input.madeBy)
 }
 
 const generateProjectTitleAndDescription = projectInfo => {
@@ -42,6 +44,11 @@ const generateTableOfContents = (objectDaddy) => {
         showCreditsInfo = true;
     }
 
+    let showCollaboratorsInfo = false
+    if (objectDaddy.collaboratorsInfo != null) {
+        showCollaboratorsInfo = true;
+    }
+
     let showContributingInfo = false
     if (objectDaddy.contributingInfo != null) {
         showContributingInfo = true;
@@ -57,44 +64,57 @@ const generateTableOfContents = (objectDaddy) => {
         showContactInfo = true;
     }
 
+    let showMadeBy = false
+    if (objectDaddy.madeBy != null) {
+        showMadeBy = true;
+    }
+
     let tableOfContentsList = ""
 
     if (showProjectInfo) {
-        tableOfContentsList += `- [Project-Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
+        tableOfContentsList += `[Project Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
     }
 
     if (showInstallInfo) {
-        tableOfContentsList += "- [Installation Instructions](#installInfo)\n"
+        tableOfContentsList += "[Installation Instructions](#installation-instructions)\n"
     }
 
     if (showUsageInfo) {
-        tableOfContentsList += "- [Usage](#usageInfo)\n"
+        tableOfContentsList += "[Usage](#how-to-use)\n"
     }
 
     if (showPreviewImage) {
-        tableOfContentsList += "- [Preview](#previewImage)\n"
+        tableOfContentsList += "[Preview](#preview)\n"
     }
 
     if (showCreditsInfo) {
-        tableOfContentsList += "- [Credits-&-Collaborators](#${creditsInfo})\n"
+        tableOfContentsList += "[Credits](#credits)\n"
+    }
+
+    if (showCollaboratorsInfo) {
+        tableOfContentsList += "[Collaborators](#collaborators)\n"
     }
 
     if (showContributingInfo) {
-        tableOfContentsList += "- [Contributing](#${contributingInfo})\n"
+        tableOfContentsList += "[Contributing](#contributing)\n"
     }
 
     if (showTestsInfo) {
-        tableOfContentsList += "- [Tests](#${testsInfo})\n"
+        tableOfContentsList += "[Tests](#testsing)\n"
     }
 
     if (showContactInfo) {
-        tableOfContentsList += "- [Contact-Me](#${contactInfo})\n"
+        tableOfContentsList += "[Contact Me](#contact-me)\n"
+    }
+
+    if (showMadeBy) {
+        tableOfContentsList += "[Made By](#made-by)"
     }
 
     return `
 ## Table of Contents:
 ${tableOfContentsList}
-        `
+`
 }
 
 const generateInstallationInstructions = installInfo => {
@@ -114,42 +134,88 @@ ${instructionList}
 const generateUsageDescription = usageInfo => {
     return `
 ## How to Use:
-${usageInfo}
+${usageInfo.uses}
     `
 }
 
 const generateImagePreview = previewImage => {
     return `
 ## Preview:
-${previewImage}
+![Preview](${previewImage.url})\n
+Deployed Site: [${previewImage.website}](#${previewImage.website})
     `
 }
 
-const generateCreditsAndCollaborators = creditsAndCollaboratorsInfo => {
+const generateCredits = creditsInfo => {
+    let showCreditsInfo = false
+    if (creditsInfo != null && creditsInfo.credits != null) {
+        showCreditsInfo = true;
+    } else {
+        return ""
+    }
     return `
 ## Credits:
-${creditsAndCollaboratorsInfo}`
+${creditsInfo.credits}`
+}
+
+const generateCollaborators = collaboratorsInfo => {
+    let showCollaboratorsInfo = false
+    if (collaboratorsInfo != null && collaboratorsInfo.collaborators != null) {
+        showCollaboratorsInfo = true;
+    } else {
+        return ""
+    }
+    return `
+## Collaborators:
+${collaboratorsInfo.collaborators}`
 }
 
 const generateContributingPreferences = contributingInfo => {
+    let showContributingInfo = false
+    if (contributingInfo != null && contributingInfo.contributing != null) {
+        showContributingInfo = true;
+    } else {
+        return ""
+    }
     return `
 ## Contributing:
-${contributingInfo}
-    `
+${contributingInfo.contributing}`
 }
 
 const generateTestsInstructions = testsInfo => {
+    let showTestsInstructions = false
+    if (testsInfo != null && testsInfo.tests != null) {
+        showTestsInstructions = true;
+    } else {
+        return ""
+    }   
     return `
 ## Testing:
-${testsInfo}
+${testsInfo.tests}
     `
 }
 
 const generateContactInfo = contactInfo => {
+    let showContactInfo = false
+    if (contactInfo != null && contactInfo.email != null && contactInfo.github != null && contactInfo.website != null && contactInfo.phone != null) {
+        showContactInfo = true;
+    } else {
+        return ""
+    }
     return `
 ## Contact Me:
-${contactInfo} 
+Email: [${contactInfo.email}](${contactInfo.email})\n
+Github: [${contactInfo.github}](${contactInfo.github})\n
+Website: [${contactInfo.website}](${contactInfo.website})\n
+Phone Number: ${contactInfo.phone}\n
     `
+}
+
+const generateMadeBy = madeByInfo => {
+    return `
+## Made By:
+${madeByInfo.madeBy}\n
+${madeByInfo.copyright}`
 }
 
 module.exports = {

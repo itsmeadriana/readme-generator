@@ -35,19 +35,25 @@ const usageInfo = {
 }  
 
 const previewImage = {
-  "url": "https://media.baamboozle.com/uploads/images/24875/1613652058_50446.jpeg"
+  "url": "https://media.baamboozle.com/uploads/images/24875/1613652058_50446.jpeg",
+  "website": "www.google.com"
 }
 
 const creditsInfo = {
-  "creditsyes": "My mother, Mr. Rogers, and Tarzan.",
-  // "creditsno": "This project contains no credits."
-  "collaboratorsyes": "You, as it happens. Oh and also my super hot programmer boyfriend.",
-  // "collaboratorsno": "There were no collaborators in this project."
+  "credits": "Brain cell 1 and brain cell 2.",
+  // "creditsYes": "My mother, Mr. Rogers, and Tarzan.",
+  // "creditsNo": "This project contains no credits."
+  
+}
+
+const collaboratorsInfo = {
+  "collaborators": "My super hot programmer boyfriend."
 }
 
 const contributingInfo = {
-  "preference-yes": "You may contribute to this project by contacting me. See below for more details.",
-  "preference-no": "Currently, this project is closed to contributors."
+  "contributing": "You may contribute to the project."
+  // "preference-yes": "You may contribute to this project by contacting me. See below for more details.",
+  // "preference-no": "Currently, this project is closed to contributors."
 }
 
 const testsInfo = {
@@ -58,7 +64,12 @@ const contactInfo = {
   "email": "deuteronomy@aol.net",
   "github": "scifinerd42",
   "phone": 7897897897,
-  "address": "299 Science Way"
+  "website": "mywebsite.geocities.com"
+}
+
+const madeBy = {
+  "madeBy": "Constance Noring",
+  "copyright": "Copyright 2021"
 }
 
 const objectDaddy = {
@@ -67,9 +78,11 @@ const objectDaddy = {
   "usageInfo": usageInfo,
   "previewImage": previewImage,
   "creditsInfo": creditsInfo,
+  "collaboratorsInfo": collaboratorsInfo,
   "contributingInfo": contributingInfo,
   "testsInfo": testsInfo,
-  "contactInfo": contactInfo
+  "contactInfo": contactInfo,
+  "madeBy": madeBy
 }
 
 
