@@ -4,6 +4,7 @@ const templateDaddy = (input) => {
         generateInstallationInstructions(input.installInfo) +
         generateUsageDescription(input.usageInfo) +
         generateImagePreview(input.previewImage) +
+        generateDeploymentLink(input.deploymentLink) +
         generateCredits(input.creditsInfo) +
         generateCollaborators(input.collaboratorsInfo) + 
         generateContributingPreferences(input.contributingInfo) +
@@ -39,6 +40,11 @@ const generateTableOfContents = (objectDaddy) => {
         showPreviewImage = true;
     }
 
+    let showDeploymentLink = false
+    if (objectDaddy.deploymentLink != null) {
+        showDeploymentLink = true;
+    }
+        
     let showCreditsInfo = false
     if (objectDaddy.creditsInfo != null) {
         showCreditsInfo = true;
@@ -85,6 +91,10 @@ const generateTableOfContents = (objectDaddy) => {
 
     if (showPreviewImage) {
         tableOfContentsList += "[Preview](#preview)\n"
+    }
+
+    if (showDeploymentLink) {
+        tableOfContentsList += "[Website](#website)\n"
     }
 
     if (showCreditsInfo) {
@@ -141,9 +151,14 @@ ${usageInfo.uses}
 const generateImagePreview = previewImage => {
     return `
 ## Preview:
-![Preview](${previewImage.url})\n
-Deployed Site: [${previewImage.website}](#${previewImage.website})
+![Preview](${previewImage.url})
     `
+}
+
+const generateDeploymentLink = deploymentLink => {
+    return `
+## Website:
+Deployed Site: [${deploymentLink.website}](#${deploymentLink.website})`
 }
 
 const generateCredits = creditsInfo => {

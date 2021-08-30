@@ -7,6 +7,7 @@
 [Installation Instructions](#installation-instructions)
 [Usage](#how-to-use)
 [Preview](#preview)
+[Website](#website)
 [Credits](#credits)
 [Collaborators](#collaborators)
 [Contributing](#contributing)
@@ -25,9 +26,9 @@ This app will run on your computer.
     
 ## Preview:
 ![Preview](https://media.baamboozle.com/uploads/images/24875/1613652058_50446.jpeg)
-
-Deployed Site: [www.google.com](#www.google.com)
     
+## Website:
+Deployed Site: [undefined](#undefined)
 ## Credits:
 Brain cell 1 and brain cell 2.
 ## Collaborators:
