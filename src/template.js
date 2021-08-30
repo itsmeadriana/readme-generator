@@ -144,7 +144,7 @@ const generateTableOfContents = (objectDaddy) => {
     }
 
     if (showLicenseBadgeInfo) {
-        tableOfContentsList += "[Badges](#badges<br />"
+        tableOfContentsList += "[Badges](#badges)<br />"
     }
 
     if (showMadeBy) {
@@ -254,12 +254,20 @@ Phone Number: ${contactInfo.phone}\n
     }
 }
 
-const generateLicenseBadge = licenseInfo => {
+let generateLicenseBadge = licenseInfo => {
     if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
         return `
-## Badges:
-![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})
-        `
+## Badges\n`
+    } else {
+        return ""
+    }
+}
+
+generateLicenseBadge = licenseInfo => {
+    if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
+        return `
+## Badges\n` +
+`![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
     }
     else {
         return ""
@@ -277,7 +285,6 @@ ${madeByInfo.copyright}`
     }
 }
 
-
-    module.exports = {
-        templateDaddy
-    };
+module.exports = {
+    templateDaddy
+};
