@@ -1,12 +1,13 @@
 const templateDaddy = (input) => {
     return generateProjectTitleAndDescription(input.projectInfo) +
         generateTableOfContents(input) +
+        generateBuiltWithInfo(input.builtWithInfo) +
         generateInstallationInstructions(input.installInfo) +
         generateUsageDescription(input.usageInfo) +
         generateImagePreview(input.previewImage) +
         generateDeploymentLink(input.deploymentLink) +
         generateCredits(input.creditsInfo) +
-        generateCollaborators(input.collaboratorsInfo) + 
+        generateCollaborators(input.collaboratorsInfo) +
         generateContributingPreferences(input.contributingInfo) +
         generateTestsInstructions(input.testsInfo) +
         generateContactInfo(input.contactInfo) +
@@ -14,64 +15,80 @@ const templateDaddy = (input) => {
 }
 
 const generateProjectTitleAndDescription = projectInfo => {
-    return `
+    if (projectInfo != undefined && projectInfo.title != undefined && projectInfo.description != undefined) {
+            return `
 # ${projectInfo.title}
 ## ${projectInfo.description}
     `
+    } else {
+        return ""
+    }
 };
+
+const generateBuiltWithInfo = builtWithInfo => {
+    if (builtWithInfo != undefined && builtWithInfo.languages != undefined) {
+            return `
+## Built With the Following:
+${builtWithInfo.languages}
+    `
+    } else {
+        return ""
+    }
+
+}
 
 const generateTableOfContents = (objectDaddy) => {
     let showProjectInfo = false
-    if (objectDaddy.projectInfo != null) {
+    if (objectDaddy.projectInfo != undefined) {
         showProjectInfo = true;
     }
     let showInstallInfo = false
-    if (objectDaddy.installInfo != null) {
+    if (objectDaddy.installInfo != undefined) {
         showInstallInfo = true;
     }
 
     let showUsageInfo = false
-    if (objectDaddy.usageInfo != null) {
+    if (objectDaddy.usageInfo != undefined) {
         showUsageInfo = true;
     }
 
     let showPreviewImage = false
-    if (objectDaddy.previewImage != null) {
+    if (objectDaddy.previewImage != undefined) {
         showPreviewImage = true;
     }
 
     let showDeploymentLink = false
-    if (objectDaddy.deploymentLink != null) {
+    if (objectDaddy.deploymentLink != undefined) {
         showDeploymentLink = true;
     }
-        
+
     let showCreditsInfo = false
-    if (objectDaddy.creditsInfo != null) {
+    if (objectDaddy.creditsInfo != undefined) {
         showCreditsInfo = true;
     }
 
     let showCollaboratorsInfo = false
-    if (objectDaddy.collaboratorsInfo != null) {
+    if (objectDaddy.collaboratorsInfo != undefined) {
         showCollaboratorsInfo = true;
     }
 
     let showContributingInfo = false
-    if (objectDaddy.contributingInfo != null) {
+    if (objectDaddy.contributingInfo != undefined) {
         showContributingInfo = true;
     }
 
     let showTestsInfo = false
-    if (objectDaddy.testsInfo != null) {
+    if (objectDaddy.testsInfo != undefined) {
         showTestsInfo = true;
     }
 
     let showContactInfo = false
-    if (objectDaddy.contactInfo != null) {
+    if (objectDaddy.contactInfo != undefined) {
         showContactInfo = true;
     }
 
     let showMadeBy = false
-    if (objectDaddy.madeBy != null) {
+    if (objectDaddy.madeBy != undefined) {
         showMadeBy = true;
     }
 
@@ -128,111 +145,114 @@ ${tableOfContentsList}
 }
 
 const generateInstallationInstructions = installInfo => {
-
-    let instructions = installInfo.instructions
-    let instructionList = ""
-    instructions.forEach(instruction => {
-        instructionList += `- ${instruction}\n`
-    })
-
-    return `
+    if (installInfo != undefined && installInfo.instructions != undefined) {
+            return `
 ## Installation Instructions:
-${instructionList}
-`
+${installInfo.instructions}`
+    } else {
+        return ""
+    }
 }
 
 const generateUsageDescription = usageInfo => {
+    if (usageInfo != undefined && usageInfo.uses != undefined) {
     return `
 ## How to Use:
 ${usageInfo.uses}
-    `
+    `        
+    } else {
+        return ""
+    }
 }
 
 const generateImagePreview = previewImage => {
+    if (previewImage != undefined && previewImage.url != undefined) {
     return `
 ## Preview:
 ![Preview](${previewImage.url})
-    `
+    `        
+    } else {
+        return ""
+    }
 }
 
 const generateDeploymentLink = deploymentLink => {
-    return `
+    if (deploymentLink != undefined && deploymentLink.url != undefined) {
+        return `
 ## Website:
-Deployed Site: [${deploymentLink.website}](#${deploymentLink.website})`
+Deployed Site: [${deploymentLink.url}](#${deploymentLink.url})`
+    } else {
+       return "" 
+    }
 }
 
 const generateCredits = creditsInfo => {
-    let showCreditsInfo = false
-    if (creditsInfo != null && creditsInfo.credits != null) {
-        showCreditsInfo = true;
-    } else {
-        return ""
-    }
+    if (creditsInfo != undefined && creditsInfo.credits != undefined) {
     return `
 ## Credits:
 ${creditsInfo.credits}`
+    } else {
+        return ""
+    }
 }
 
 const generateCollaborators = collaboratorsInfo => {
-    let showCollaboratorsInfo = false
-    if (collaboratorsInfo != null && collaboratorsInfo.collaborators != null) {
-        showCollaboratorsInfo = true;
-    } else {
-        return ""
-    }
+    if (collaboratorsInfo != undefined && collaboratorsInfo.collaborators != undefined) {
     return `
 ## Collaborators:
 ${collaboratorsInfo.collaborators}`
+    } else {
+        return ""
+    }
 }
 
 const generateContributingPreferences = contributingInfo => {
-    let showContributingInfo = false
-    if (contributingInfo != null && contributingInfo.contributing != null) {
-        showContributingInfo = true;
-    } else {
-        return ""
-    }
+    if (contributingInfo != undefined && contributingInfo.contributing != undefined) {
     return `
 ## Contributing:
 ${contributingInfo.contributing}`
-}
-
-const generateTestsInstructions = testsInfo => {
-    let showTestsInstructions = false
-    if (testsInfo != null && testsInfo.tests != null) {
-        showTestsInstructions = true;
-    } else {
-        return ""
-    }   
-    return `
-## Testing:
-${testsInfo.tests}
-    `
-}
-
-const generateContactInfo = contactInfo => {
-    let showContactInfo = false
-    if (contactInfo != null && contactInfo.email != null && contactInfo.github != null && contactInfo.website != null && contactInfo.phone != null) {
-        showContactInfo = true;
     } else {
         return ""
     }
-    return `
+}
+
+const generateTestsInstructions = testsInfo => {
+    if (testsInfo != undefined && testsInfo.tests != undefined) {
+        return `
+## Testing:
+${testsInfo.tests}
+`
+    } else {
+        return ""
+    }    
+}
+
+const generateContactInfo = contactInfo => {
+    if (contactInfo != undefined && contactInfo.email != undefined && contactInfo.github != undefined && contactInfo.website != undefined && contactInfo.phone != undefined) {
+        return `
 ## Contact Me:
 Email: [${contactInfo.email}](${contactInfo.email})\n
 Github: [${contactInfo.github}](${contactInfo.github})\n
 Website: [${contactInfo.website}](${contactInfo.website})\n
 Phone Number: ${contactInfo.phone}\n
-    `
+`
+    } else {
+        return ""
+    }
 }
 
 const generateMadeBy = madeByInfo => {
-    return `
+    if (madeByInfo != undefined) {
+        return `
 ## Made By:
 ${madeByInfo.madeBy}\n
 ${madeByInfo.copyright}`
+    } else {
+        return ""
+    }
 }
 
-module.exports = {
-    templateDaddy
-};
+
+    module.exports = {
+        templateDaddy
+    };

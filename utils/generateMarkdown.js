@@ -2,7 +2,8 @@ const template = require('../src/template.js')
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) { }
+function renderLicenseBadge(license) { 
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -16,87 +17,78 @@ function renderLicenseSection(license) { }
 function generateMarkdown(data) {
   // return `# ${data.title}
   // `;
+  
+  // const projectInfo = {
+  //   "title": "",
+  //   "description": ""
+  // }
 
-  const projectInfo = {
-    "title": "Solange",
-    "description": "What really happened in the elevator??"
-  }
+  // const builtWithInfo = {
+  //   "languages": []
+  // }
 
-  const builtWithInfo = {
-    "languages": ""
-  }
+  // const installInfo = {
+  //   "instructions": ""
+  // }
 
-  const installInfo = {
-    "instructions": [
-      "1. Download zip File.",
-      "2. Open zip file.",
-      "3. Install zip file."
-    ]
-  }
+  // const usageInfo = {
+  //   "uses": ""
+  // }
 
-  const usageInfo = {
-    "uses": "This app will run on your computer."
-  }
+  // const previewImage = {
+  //   "url": ""
+  // }
 
-  const previewImage = {
-    "url": "https://media.baamboozle.com/uploads/images/24875/1613652058_50446.jpeg",
-  }
+  // const deploymentLink = {
+  //   "url": ""
+  // }
 
-  const deploymentLink = {
-    "url": "www.google.com"
-  }
+  // const creditsInfo = {
+  //   "credits": ""
+  // }
 
-  const creditsInfo = {
-    "credits": "Brain cell 1 and brain cell 2.",
-    // "creditsYes": "My mother, Mr. Rogers, and Tarzan.",
-    // "creditsNo": "This project contains no credits."
+  // const collaboratorsInfo = {
+  //   "collaborators": ""
+  // }
 
-  }
+  // const contributingInfo = {
+  //   "contributing": ""
+  // }
 
-  const collaboratorsInfo = {
-    "collaborators": "My super hot programmer boyfriend."
-  }
+  // const testsInfo = {
+  //   "tests": ""
+  // }
 
-  const contributingInfo = {
-    "contributing": "You may contribute to the project."
-    // "preference-yes": "You may contribute to this project by contacting me. See below for more details.",
-    // "preference-no": "Currently, this project is closed to contributors."
-  }
+  // const contactInfo = {
+  //   "email": "",
+  //   "github": "",
+  //   "phone": "",
+  //   "website": ""
+  // }
 
-  const testsInfo = {
-    "tests": "I wrote the following tests for this project:"
-  }
+  // const madeBy = {
+  //   "madeBy": "",
+  //   "copyright": ""
+  // }
 
-  const contactInfo = {
-    "email": "deuteronomy@aol.net",
-    "github": "scifinerd42",
-    "phone": 7897897897,
-    "website": "mywebsite.geocities.com"
-  }
-
-  const madeBy = {
-    "madeBy": "Constance Noring",
-    "copyright": "Copyright 2021"
-  }
-
-  const objectDaddy = {
-    "projectInfo": projectInfo,
-    "builtWithInfo": builtWithInfo,
-    "installInfo": installInfo,
-    "usageInfo": usageInfo,
-    "previewImage": previewImage,
-    "deploymentLink": deploymentLink,
-    "creditsInfo": creditsInfo,
-    "collaboratorsInfo": collaboratorsInfo,
-    "contributingInfo": contributingInfo,
-    "testsInfo": testsInfo,
-    "contactInfo": contactInfo,
-    "madeBy": madeBy
-  }
+  // const objectDaddy = {
+  //   "projectInfo": projectInfo,
+  //   "builtWithInfo": builtWithInfo,
+  //   "installInfo": installInfo,
+  //   "usageInfo": usageInfo,
+  //   "previewImage": previewImage,
+  //   "deploymentLink": deploymentLink,
+  //   "creditsInfo": creditsInfo,
+  //   "collaboratorsInfo": collaboratorsInfo,
+  //   "contributingInfo": contributingInfo,
+  //   "testsInfo": testsInfo,
+  //   "contactInfo": contactInfo,
+  //   "madeBy": madeBy
+  // }
 
 
 
-  return template.templateDaddy(objectDaddy);
+  return template.templateDaddy(data);
 }
 
 
