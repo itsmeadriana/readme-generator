@@ -1,5 +1,6 @@
 const templateDaddy = (input) => {
     return generateProjectTitleAndDescription(input.projectInfo) +
+        generateLicenseBadgeImage(input.licenseInfo) +
         generateTableOfContents(input) +
         generateBuiltWithInfo(input.builtWithInfo) +
         generateInstallationInstructions(input.installInfo) +
@@ -26,12 +27,21 @@ const generateProjectTitleAndDescription = projectInfo => {
     }
 };
 
+const generateLicenseBadgeImage = licenseInfo => {
+    if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
+        return `
+![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
+    }
+    else {
+        return ""
+    }
+};
+
 const generateBuiltWithInfo = builtWithInfo => {
     if (builtWithInfo != undefined && builtWithInfo.languages != undefined) {
             return `
 ## Built With the Following:
-${builtWithInfo.languages}
-    `
+${builtWithInfo.languages}`.split(',').join(', ')
     } else {
         return ""
     }
@@ -140,11 +150,11 @@ const generateTableOfContents = (objectDaddy) => {
     }
 
     if (showContactInfo) {
-        tableOfContentsList += "[Contact Me](#contact-me)<br />"
+        tableOfContentsList += "[Questions](#questions)<br />"
     }
 
     if (showLicenseBadgeInfo) {
-        tableOfContentsList += "[Badges](#badges)<br />"
+        tableOfContentsList += "[License](#license)<br />"
     }
 
     if (showMadeBy) {
@@ -161,7 +171,7 @@ const generateInstallationInstructions = installInfo => {
     if (installInfo != undefined && installInfo.instructions != undefined) {
             return `
 ## Installation Instructions:
-${installInfo.instructions}`
+${installInfo.instructions}`.split('. ').join('. - ');
     } else {
         return ""
     }
@@ -243,7 +253,7 @@ ${testsInfo.tests}
 const generateContactInfo = contactInfo => {
     if (contactInfo != undefined && contactInfo.email != undefined && contactInfo.github != undefined && contactInfo.website != undefined && contactInfo.phone != undefined) {
         return `
-## Contact Me:
+## Questions? Contact Me:
 Email: [${contactInfo.email}](${contactInfo.email})\n
 Github: [${contactInfo.github}](${contactInfo.github})\n
 Website: [${contactInfo.website}](${contactInfo.website})\n
@@ -257,19 +267,9 @@ Phone Number: ${contactInfo.phone}\n
 let generateLicenseBadge = licenseInfo => {
     if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
         return `
-## Badges\n`
+## License\n` +
+`[Link](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
     } else {
-        return ""
-    }
-}
-
-generateLicenseBadge = licenseInfo => {
-    if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
-        return `
-## Badges\n` +
-`![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
-    }
-    else {
         return ""
     }
 }
@@ -278,8 +278,8 @@ const generateMadeBy = madeByInfo => {
     if (madeByInfo != undefined) {
         return `
 ## Made By:
-${madeByInfo.madeBy}\n
-${madeByInfo.copyright}`
+© Copyright ${madeByInfo.copyright} ${madeByInfo.madeBy}
+`
     } else {
         return ""
     }
