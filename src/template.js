@@ -11,6 +11,7 @@ const templateDaddy = (input) => {
         generateContributingPreferences(input.contributingInfo) +
         generateTestsInstructions(input.testsInfo) +
         generateContactInfo(input.contactInfo) +
+        generateLicenseBadge(input.licenseInfo) +
         generateMadeBy(input.madeBy)
 }
 
@@ -87,6 +88,11 @@ const generateTableOfContents = (objectDaddy) => {
         showContactInfo = true;
     }
 
+    let showLicenseBadgeInfo = false
+    if (objectDaddy.licenseInfo != undefined) {
+        showLicenseBadgeInfo = true;
+    }
+
     let showMadeBy = false
     if (objectDaddy.madeBy != undefined) {
         showMadeBy = true;
@@ -95,43 +101,50 @@ const generateTableOfContents = (objectDaddy) => {
     let tableOfContentsList = ""
 
     if (showProjectInfo) {
-        tableOfContentsList += `[Project Information](#${objectDaddy.projectInfo.title.toLowerCase()})\n`
+        let title = objectDaddy.projectInfo.title.toLowerCase()
+        title.split(' ').join('-')
+
+        tableOfContentsList += `[Project Information](#${title.split(' ').join('-')})<br />`
     }
 
     if (showInstallInfo) {
-        tableOfContentsList += "[Installation Instructions](#installation-instructions)\n"
+        tableOfContentsList += "[Installation Instructions](#installation-instructions)<br />"
     }
 
     if (showUsageInfo) {
-        tableOfContentsList += "[Usage](#how-to-use)\n"
+        tableOfContentsList += "[Usage](#how-to-use)<br />"
     }
 
     if (showPreviewImage) {
-        tableOfContentsList += "[Preview](#preview)\n"
+        tableOfContentsList += "[Preview](#preview)<br />"
     }
 
     if (showDeploymentLink) {
-        tableOfContentsList += "[Website](#website)\n"
+        tableOfContentsList += "[Website](#website)<br />"
     }
 
     if (showCreditsInfo) {
-        tableOfContentsList += "[Credits](#credits)\n"
+        tableOfContentsList += "[Credits](#credits)<br />"
     }
 
     if (showCollaboratorsInfo) {
-        tableOfContentsList += "[Collaborators](#collaborators)\n"
+        tableOfContentsList += "[Collaborators](#collaborators)<br />"
     }
 
     if (showContributingInfo) {
-        tableOfContentsList += "[Contributing](#contributing)\n"
+        tableOfContentsList += "[Contributing](#contributing)<br />"
     }
 
     if (showTestsInfo) {
-        tableOfContentsList += "[Tests](#testsing)\n"
+        tableOfContentsList += "[Tests](#testsing)<br />"
     }
 
     if (showContactInfo) {
-        tableOfContentsList += "[Contact Me](#contact-me)\n"
+        tableOfContentsList += "[Contact Me](#contact-me)<br />"
+    }
+
+    if (showLicenseBadgeInfo) {
+        tableOfContentsList += "[Badges](#badges<br />"
     }
 
     if (showMadeBy) {
@@ -237,6 +250,18 @@ Website: [${contactInfo.website}](${contactInfo.website})\n
 Phone Number: ${contactInfo.phone}\n
 `
     } else {
+        return ""
+    }
+}
+
+const generateLicenseBadge = licenseInfo => {
+    if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
+        return `
+## Badges:
+![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})
+        `
+    }
+    else {
         return ""
     }
 }
