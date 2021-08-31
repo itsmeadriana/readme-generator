@@ -1,6 +1,7 @@
 const templateDaddy = (input) => {
-    return generateLicenseBadgeImage(input.licenseInfo) + 
-        generateProjectTitleAndDescription(input.projectInfo) +    
+    return generateProjectTitle(input.projectInfo) +
+        generateLicenseBadgeImage(input.licenseInfo) + 
+        generateProjectDescription(input.projectInfo) +    
         generateTableOfContents(input) +
         generateBuiltWithInfo(input.builtWithInfo) +
         generateInstallationInstructions(input.installInfo) +
@@ -16,14 +17,12 @@ const templateDaddy = (input) => {
         generateMadeBy(input.madeBy)
 }
 
-const generateProjectTitleAndDescription = projectInfo => {
-    if (projectInfo != undefined && projectInfo.title != undefined && projectInfo.description != undefined) {
-            return `
-# ${projectInfo.title}
-## Description: 
-${projectInfo.description}
-    `
-    } else {
+const generateProjectTitle = projectInfo => {
+    if (projectInfo != undefined && projectInfo.title != undefined) {
+        return `
+# ${projectInfo.title}`
+    }
+    else {
         return ""
     }
 };
@@ -38,11 +37,24 @@ const generateLicenseBadgeImage = licenseInfo => {
     }
 };
 
+const generateProjectDescription = projectInfo => {
+    if (projectInfo != undefined && projectInfo.description != undefined) {
+            return `
+## Description: 
+${projectInfo.description}
+    `
+    } else {
+        return ""
+    }
+};
+
+
+
 const generateBuiltWithInfo = builtWithInfo => {
     if (builtWithInfo != undefined && builtWithInfo.languages != undefined) {
             return `
 ## Built With the Following:
-${builtWithInfo.languages}`.split(',').join(', ')
+- ${builtWithInfo.languages}`.split(',').join('\n - ')
     } else {
         return ""
     }
@@ -172,7 +184,7 @@ const generateInstallationInstructions = installInfo => {
     if (installInfo != undefined && installInfo.instructions != undefined) {
             return `
 ## Installation Instructions:
-- ${installInfo.instructions}`.split('. ').join('. - ');
+- ${installInfo.instructions}`.split('. ').join('.\n - ');
     } else {
         return ""
     }
@@ -233,7 +245,7 @@ ${collaboratorsInfo.collaborators}`
 const generateContributingPreferences = contributingInfo => {
     if (contributingInfo != undefined && contributingInfo.contributing != undefined) {
     return `
-### Contributing:
+## Contributing:
 ${contributingInfo.contributing}`
     } else {
         return ""
@@ -243,7 +255,7 @@ ${contributingInfo.contributing}`
 const generateTestsInstructions = testsInfo => {
     if (testsInfo != undefined && testsInfo.tests != undefined) {
         return `
-### Testing:
+## Testing:
 ${testsInfo.tests}
 `
     } else {
@@ -254,7 +266,7 @@ ${testsInfo.tests}
 const generateContactInfo = contactInfo => {
     if (contactInfo != undefined && contactInfo.email != undefined && contactInfo.github != undefined && contactInfo.website != undefined && contactInfo.phone != undefined) {
         return `
-### Questions? Contact Me:
+## Questions? Contact Me:
 Email: [${contactInfo.email}](${contactInfo.email})\n
 Github: [${contactInfo.github}](${contactInfo.github})\n
 Website: [${contactInfo.website}](${contactInfo.website})\n
@@ -265,6 +277,7 @@ Phone Number: ${contactInfo.phone}\n
     }
 }
 
+//This generating licenses business was a lot.
 
 let licenseInfoLicenses = {
     "apm": {
@@ -350,20 +363,11 @@ let licenseInfoLicenses = {
 }
 
 
-// var licenseInfoArray = () => {
-//     let licenseInfo.license = `${licenseInfo.message}`;
-//     `${licenseInfo.message}` = ['APM', 'AUR license', 'Bower', 'Cocoapods', 'Conda license', 'CPAN', 'CRAN/METACRAN', 'Crates.io', 'CTAN', 'DUB', 'Eclipse Marketplace', 'GitHub', 'Hex.pm', 'NPM', 'Ore license', 'Pakagist license', 'Packagist license custom server', 'PyPI license', 'REUSE Compliance', 'Weblate component license'],
-//     licenseInfo.license = ['MIT', 'Apache', 'MIT', 'MIT', 'MIT', 'lgpl_2_1', 'MIT + file LICENSE', 'MIT/Apache-2.0', 'MIT/Apache-2.0', 'ppl1.3c, ofl', 'MIT', 'GPL', 'MIT', 'Apache 2', 'MIT', 'MIT', 'MIT', 'MIT', 'MIT', 'BSD', 'compliant', 'MIT']
-// }
-
-
 let generateLicense = licenseInfo => {
     if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
-        console.log(licenseInfo.message)
         let url = licenseInfoLicenses[`${licenseInfo.message}`].url
-        console.log(url)
         return `
-### License\n` +
+## License\n` +
 `[Link](${url})`
     } else {
         return ""
