@@ -1,6 +1,6 @@
 const templateDaddy = (input) => {
-    return generateProjectTitleAndDescription(input.projectInfo) +
-        generateLicenseBadgeImage(input.licenseInfo) +
+    return generateLicenseBadgeImage(input.licenseInfo) + 
+        generateProjectTitleAndDescription(input.projectInfo) +    
         generateTableOfContents(input) +
         generateBuiltWithInfo(input.builtWithInfo) +
         generateInstallationInstructions(input.installInfo) +
@@ -12,7 +12,7 @@ const templateDaddy = (input) => {
         generateContributingPreferences(input.contributingInfo) +
         generateTestsInstructions(input.testsInfo) +
         generateContactInfo(input.contactInfo) +
-        generateLicenseBadge(input.licenseInfo) +
+        generateLicense(input.licenseInfo) +
         generateMadeBy(input.madeBy)
 }
 
@@ -20,7 +20,8 @@ const generateProjectTitleAndDescription = projectInfo => {
     if (projectInfo != undefined && projectInfo.title != undefined && projectInfo.description != undefined) {
             return `
 # ${projectInfo.title}
-## ${projectInfo.description}
+## Description: 
+${projectInfo.description}
     `
     } else {
         return ""
@@ -31,7 +32,7 @@ const generateLicenseBadgeImage = licenseInfo => {
     if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
         return `
 ![license](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
-    }
+    }      
     else {
         return ""
     }
@@ -171,7 +172,7 @@ const generateInstallationInstructions = installInfo => {
     if (installInfo != undefined && installInfo.instructions != undefined) {
             return `
 ## Installation Instructions:
-${installInfo.instructions}`.split('. ').join('. - ');
+- ${installInfo.instructions}`.split('. ').join('. - ');
     } else {
         return ""
     }
@@ -203,7 +204,7 @@ const generateDeploymentLink = deploymentLink => {
     if (deploymentLink != undefined && deploymentLink.url != undefined) {
         return `
 ## Website:
-Deployed Site: [${deploymentLink.url}](#${deploymentLink.url})`
+[${deploymentLink.url}](#${deploymentLink.url})`
     } else {
        return "" 
     }
@@ -232,7 +233,7 @@ ${collaboratorsInfo.collaborators}`
 const generateContributingPreferences = contributingInfo => {
     if (contributingInfo != undefined && contributingInfo.contributing != undefined) {
     return `
-## Contributing:
+### Contributing:
 ${contributingInfo.contributing}`
     } else {
         return ""
@@ -242,7 +243,7 @@ ${contributingInfo.contributing}`
 const generateTestsInstructions = testsInfo => {
     if (testsInfo != undefined && testsInfo.tests != undefined) {
         return `
-## Testing:
+### Testing:
 ${testsInfo.tests}
 `
     } else {
@@ -253,7 +254,7 @@ ${testsInfo.tests}
 const generateContactInfo = contactInfo => {
     if (contactInfo != undefined && contactInfo.email != undefined && contactInfo.github != undefined && contactInfo.website != undefined && contactInfo.phone != undefined) {
         return `
-## Questions? Contact Me:
+### Questions? Contact Me:
 Email: [${contactInfo.email}](${contactInfo.email})\n
 Github: [${contactInfo.github}](${contactInfo.github})\n
 Website: [${contactInfo.website}](${contactInfo.website})\n
@@ -264,11 +265,106 @@ Phone Number: ${contactInfo.phone}\n
     }
 }
 
-let generateLicenseBadge = licenseInfo => {
+
+let licenseInfoLicenses = {
+    "apm": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "aur": {
+        "license": "Apache",
+        "url": "https://www.apache.org/licenses/LICENSE-1.0"
+    },
+    "bower": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "cocoapods": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "condaLicense": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "cpan": {
+        "license": "lgpl_2_1",
+        "url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html"
+    },
+    "cranMetacran":{
+        "license": "MIT + file LICENSE",
+        "url": ""
+    },
+    "crates": {
+        "license": "MIT/Apache-2.0",
+        "url": "https://crates.io/crates/opener/0.5.0"
+    },
+    "ctan": {
+        "license": "ppl1.3c, ofl",
+        "url": "https://ctan.org/license/lppl1.3c"
+    },
+    "dub": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "eclipseMarket": {
+        "license": "GPL",
+        "url": "https://choosealicense.com/licenses/gpl-3.0/"
+    },
+    "gitHub": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "hex": {
+        "license": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+    },
+    "npm": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "oreLicense": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "packagistLicense": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "packagistLicenseCs": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+    "pypiLicense": {
+        "license": "BSD",
+        "url": "https://choosealicense.com/licenses/0bsd/"
+    },
+    "reuseCompliance": {
+        "license": "compliant",
+        "url": "https://reuse.software/spec/"
+    },
+    "weblateComponentLicense": {
+        "license": "MIT",
+        "url": "https://choosealicense.com/licenses/mit/"
+    },
+}
+
+
+// var licenseInfoArray = () => {
+//     let licenseInfo.license = `${licenseInfo.message}`;
+//     `${licenseInfo.message}` = ['APM', 'AUR license', 'Bower', 'Cocoapods', 'Conda license', 'CPAN', 'CRAN/METACRAN', 'Crates.io', 'CTAN', 'DUB', 'Eclipse Marketplace', 'GitHub', 'Hex.pm', 'NPM', 'Ore license', 'Pakagist license', 'Packagist license custom server', 'PyPI license', 'REUSE Compliance', 'Weblate component license'],
+//     licenseInfo.license = ['MIT', 'Apache', 'MIT', 'MIT', 'MIT', 'lgpl_2_1', 'MIT + file LICENSE', 'MIT/Apache-2.0', 'MIT/Apache-2.0', 'ppl1.3c, ofl', 'MIT', 'GPL', 'MIT', 'Apache 2', 'MIT', 'MIT', 'MIT', 'MIT', 'MIT', 'BSD', 'compliant', 'MIT']
+// }
+
+
+let generateLicense = licenseInfo => {
     if (licenseInfo != undefined && licenseInfo.message != undefined && licenseInfo.color != undefined) {
+        console.log(licenseInfo.message)
+        let url = licenseInfoLicenses[`${licenseInfo.message}`].url
+        console.log(url)
         return `
-## License\n` +
-`[Link](https://img.shields.io/badge/license-${licenseInfo.message}-${licenseInfo.color})`.split(' ').join('%20')
+### License\n` +
+`[Link](${url})`
     } else {
         return ""
     }
@@ -277,7 +373,7 @@ let generateLicenseBadge = licenseInfo => {
 const generateMadeBy = madeByInfo => {
     if (madeByInfo != undefined) {
         return `
-## Made By:
+### Made By
 © Copyright ${madeByInfo.copyright} ${madeByInfo.madeBy}
 `
     } else {
