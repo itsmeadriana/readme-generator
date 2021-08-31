@@ -34,7 +34,7 @@ NPM, Node.js, Inquirer, The Coding Bootcamp at UT-Austin
 Starter code provided by The Coding Bootcamp at UT-Austin and my tutor, [R. Santiago](https://github.com/rubensantiago)
 ## Contributing:
 Developers welcome!  Share your wisdom and help me make a better app. Contact me for access to the repository and create pull requests for changes. 
-## Questions? Contact Me:
+## Questions:
 Email: [itsmeadriana@gmail.com](itsmeadriana@gmail.com)
 
 Github: [github.com/itsmeadriana](github.com/itsmeadriana)
