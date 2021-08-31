@@ -64,12 +64,12 @@ const promptUser = () => {
         {
             type: 'confirm',
             name: 'confirmPreview',
-            message: 'Would you like to add a screenshot of your project?',
+            message: 'Would you like to add a screenshot or video walkthrough of your project?',
         },
         {
             type: 'input',
             name: 'previewImage.url',
-            message: 'Enter the URL to your image.',
+            message: 'Enter the URL or relative file path to your preview.',
             when: ({ confirmPreview }) => {
                 if (confirmPreview) {
                     return true;
