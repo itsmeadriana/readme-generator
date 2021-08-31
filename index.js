@@ -243,7 +243,7 @@ const promptUser = () => {
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, generateMarkdown(data), err => {
         if (err) throw err;
-        console.log('Your ReadMe file has been generated! Look for README.md to see the result.')
+        console.log('Your ReadMe file has been generated! Look for README.md in the generated-file folder to see the result.')
     });
 }
 
@@ -254,7 +254,7 @@ function init() {
     promptUser()
         .then(myPromiseFulfilledData => {
             console.log(myPromiseFulfilledData)
-            writeToFile("readme.md", myPromiseFulfilledData)
+            writeToFile("./generated-file/readme.md", myPromiseFulfilledData)
         })
 }
 
