@@ -12,7 +12,10 @@ const templateDaddy = (input) => {
         generateCollaborators(input.collaboratorsInfo) +
         generateContributingPreferences(input.contributingInfo) +
         generateTestsInstructions(input.testsInfo) +
-        generateContactInfo(input.contactInfo) +
+        generateEmailContactInfo(input.contactInfo) +
+        generateGithubContactInfo(input.contactInfo) +
+        generateWebsiteContactInfo(input.contactInfo) +
+        generatePhoneContactInfo(input.contactInfo) +
         generateLicense(input.licenseInfo) +
         generateMadeBy(input.madeBy)
 }
@@ -159,7 +162,7 @@ const generateTableOfContents = (objectDaddy) => {
     }
 
     if (showTestsInfo) {
-        tableOfContentsList += "[Tests](#testsing)<br />"
+        tableOfContentsList += "[Tests](#testing)<br />"
     }
 
     if (showContactInfo) {
@@ -263,13 +266,40 @@ ${testsInfo.tests}
     }    
 }
 
-const generateContactInfo = contactInfo => {
-    if (contactInfo != undefined && contactInfo.email != undefined && contactInfo.github != undefined && contactInfo.website != undefined && contactInfo.phone != undefined) {
+const generateEmailContactInfo = contactInfo => {
+    if (contactInfo != undefined && contactInfo.email != undefined) {
         return `
-## Questions? Contact Me:
+## Questions:
 Email: [${contactInfo.email}](${contactInfo.email})\n
+`
+    } else {
+        return ""
+    }
+}
+
+const generateGithubContactInfo = contactInfo => {
+    if (contactInfo != undefined && contactInfo.github != undefined) {
+        return `
 Github: [${contactInfo.github}](${contactInfo.github})\n
+`
+    } else {
+        return ""
+    }
+}
+
+const generateWebsiteContactInfo = contactInfo => {
+    if (contactInfo != undefined && contactInfo.website != undefined) {
+        return `
 Website: [${contactInfo.website}](${contactInfo.website})\n
+`
+    } else {
+        return ""
+    }
+}
+
+const generatePhoneContactInfo = contactInfo => {
+    if (contactInfo != undefined && contactInfo.phone != undefined) {
+        return `
 Phone Number: ${contactInfo.phone}\n
 `
     } else {

@@ -27,7 +27,7 @@ This app will prompt you to answer questions about your project to create a READ
 [![](assets/media/Readme-generator-preview.png)](https://drive.google.com/file/d/1c2g03BNtzafZL9uaK-gpW4JzGYDxCKe5/view?usp=sharing)
          
 ## Website:
-[itsmeadriana.github.io/readme-generator](#itsmeadriana.github.io/readme-generator)
+[Find the GitHub repository here.](github.com/itsmeadriana/readme-generator)
 ## Credits:
 NPM, Node.js, Inquirer, The Coding Bootcamp at UT-Austin
 ## Collaborators:
@@ -40,9 +40,6 @@ Email: [itsmeadriana@gmail.com](itsmeadriana@gmail.com)
 Github: [github.com/itsmeadriana](github.com/itsmeadriana)
 
 Website: [itsmeadriana.github.io/Portfolio](itsmeadriana.github.io/Portfolio)
-
-Phone Number: false
-
 
 ## License
 [Link](https://choosealicense.com/licenses/mit/)
