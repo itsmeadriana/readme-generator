@@ -23,7 +23,7 @@ By running this little app in Command Line and answering a few questions, you ca
 This app will prompt you to answer questions about your project to create a README file in Markdown.  You’ll enter your project’s title, a brief description, programming languages you used, and will have the option to add sections for usage, add an image preview of your project, credit collaborators and any third-party assets, provide guidelines for contributing if you choose to open your project to other developers, tests you’ve built for your application and how to use them, and contact information. You will also have the opportunity to add a license badge and a link to that license on the web. At the end of it all, you’ll have a quality document that will also include a custom Table of Contents uniquely rendered for the information you provide.
     
 ## Preview:
-[![](assets/media/Readme-generator-preview.png)](assets/media/readme-preview.mov)
+[![](assets/media/Readme-generator-preview.png)](https://drive.google.com/file/d/1c2g03BNtzafZL9uaK-gpW4JzGYDxCKe5/view?usp=sharing)
          
 ## Website:
 [itsmeadriana.github.io/readme-generator](#itsmeadriana.github.io/readme-generator)
